@@ -30,7 +30,7 @@ object WithQueueStream extends App {
   var queueOfRDDs = mutable.Queue[RDD[Int]](rdd) // Queue needs to be at reach of the Caller/User
 
   val inDS: InputDStream[Int] = ssc.queueStream(queueOfRDDs)
-  inDS.foreachRDD(r => r.foreach(println)) // This is where the action is, right before start()
+  inDS.foreachRDD(r => r.toDF().show()) // This is where the action is, right before start()
   ssc.start()
 
 
