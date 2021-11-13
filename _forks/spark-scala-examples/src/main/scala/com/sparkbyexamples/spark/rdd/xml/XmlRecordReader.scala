@@ -24,7 +24,7 @@ object XmlRecordReader {
       override def call(tuple: Tuple2[LongWritable, Text]): Unit = { // TODO Auto-generated method stub
 
         val xml = XML.loadString(tuple._2.toString)
-        val forecast = (xml \ "Name") text
+        val forecast = (xml \ "Name").text
 
         println("forecast" + forecast)
 

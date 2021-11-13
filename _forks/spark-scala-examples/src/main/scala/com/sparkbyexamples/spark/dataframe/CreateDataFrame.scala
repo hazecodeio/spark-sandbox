@@ -41,9 +41,11 @@ object CreateDataFrame extends MyContext {
     var dfFromData2 = spark.createDataFrame(data).toDF(columns:_*)
 
     //From Data (USING createDataFrame and Adding schema using StructType)
-    import scala.collection.JavaConversions._
+//    import scala.collection.JavaConversions._ // Scala 2.12
+    import scala.jdk.CollectionConverters._ // Scala 2.13
+
     val rowData = data
-      .map(attributes => Row(attributes._1, attributes._2))
+      .map(attributes => Row(attributes._1, attributes._2)).asJava // ToDo - why do w neeed to use Java's List?
     var dfFromData3 = spark.createDataFrame(rowData,schema)
 
     //From Data (USING createDataFrame and Adding bean class)

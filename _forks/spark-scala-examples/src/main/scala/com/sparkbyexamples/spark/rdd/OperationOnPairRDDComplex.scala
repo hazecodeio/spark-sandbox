@@ -36,7 +36,7 @@ object OperationOnPairRDDComplex extends App{
   //    foo -> 5
   println
 
-  val studentRDD = spark.sparkContext.parallelize(Array(
+  val studentRDD = spark.sparkContext.parallelize(Seq(
     ("Joseph", "Maths", 83), ("Joseph", "Physics", 74), ("Joseph", "Chemistry", 91), ("Joseph", "Biology", 82),
     ("Jimmy", "Maths", 69), ("Jimmy", "Physics", 62), ("Jimmy", "Chemistry", 97), ("Jimmy", "Biology", 80),
     ("Tina", "Maths", 78), ("Tina", "Physics", 73), ("Tina", "Chemistry", 68), ("Tina", "Biology", 87),

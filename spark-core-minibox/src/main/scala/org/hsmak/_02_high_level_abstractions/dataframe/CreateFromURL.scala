@@ -46,7 +46,7 @@ object CreateFromURL extends App {
 
     // Via SparkSQL API
     import org.apache.spark.sql.functions._
-    df.groupBy('DEST_COUNTRY_NAME).agg(sum('count) as 'sum).select("*").sort('sum desc).show
+    df.groupBy($"DEST_COUNTRY_NAME").agg(sum($"count") as "sum").select("*").sort($"sum".desc).show
 
     // via SQL query
     df.createOrReplaceTempView("flights")

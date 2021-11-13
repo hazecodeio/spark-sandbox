@@ -17,11 +17,11 @@
         <encoding>UTF-8</encoding>
 
         <!--spark-->
-        <spark.version>3.1.2</spark.version>
+        <spark.version>3.2.0</spark.version>
 
         <!--scala-->
-        <scala.version>2.12.14</scala.version>
-        <scala.compat.version>2.12</scala.compat.version>
+        <scala.version>2.13.7</scala.version>
+        <scala.compat.version>2.13</scala.compat.version>
 
         <!--test - scalatest/spec-->
         <spec2.version>4.10.5</spec2.version>
@@ -173,7 +173,7 @@
                 <plugin>
                     <groupId>net.alchim31.maven</groupId>
                     <artifactId>scala-maven-plugin</artifactId>
-                    <version>4.4.0</version>
+                    <version>4.5.4</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
