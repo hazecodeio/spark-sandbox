@@ -7,6 +7,7 @@ import org.apache.spark.streaming.dstream.InputDStream
 import org.apache.spark.streaming.{Milliseconds, StreamingContext}
 
 import scala.collection.mutable
+import scala.util.Random
 
 /**
   * @author ${user.name}
@@ -24,20 +25,21 @@ object WithQueueStream extends App {
   import spark.implicits._
 
   val sc = spark.sparkContext
-  val ssc = new StreamingContext(spark.sparkContext, Milliseconds(500))
+  val ssc = new StreamingContext(spark.sparkContext, Milliseconds(1000))
 
-  val rdd = sc.emptyRDD[Int]
-  var queueOfRDDs = mutable.Queue[RDD[Int]](rdd) // Queue needs to be at reach of the Caller/User
+  val rdd = sc.emptyRDD[(Int, Int)]
+  var queueOfRDDs = mutable.Queue[RDD[(Int, Int)]](rdd) // Queue needs to be at reach of the Caller/User
 
-  val inDS: InputDStream[Int] = ssc.queueStream(queueOfRDDs)
-  inDS.foreachRDD(r => r.toDF().show()) // This is where the action is, right before start()
+  val inDS: InputDStream[(Int, Int)] = ssc.queueStream(queueOfRDDs)
+  //ToDo - How to do stateful streaming where aggregation and joining is possible?
+  inDS.foreachRDD(r => r.toDF("k", "v").show()) // This is where the action is, right before start()
   ssc.start()
 
 
   while (true) {
     Thread.sleep(100)
-    val _data = Seq(1, 2, 3, 4, 5, 6, 7, 8, 9)
-    val rdd: RDD[Int] = sc.parallelize(_data)
+    val _data = LazyList.continually((Random.nextInt(3), Random.nextInt(10))).take(10)
+    val rdd: RDD[(Int, Int)] = sc.parallelize(_data)
     queueOfRDDs.enqueue(rdd)
   }
   ssc.awaitTermination()
