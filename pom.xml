@@ -30,7 +30,7 @@
         <!--test - junit-->
         <junit4.version>4.13.1</junit4.version>
         <junit5-jupiter.version>5.7.0</junit5-jupiter.version>
-        <log4j-2.version>2.14.0</log4j-2.version>
+        <log4j-2.version>2.15.0</log4j-2.version>
     </properties>
 
     <!--
