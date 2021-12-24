@@ -28,7 +28,7 @@
         <!--test - junit-->
         <junit4.version>4.13.1</junit4.version>
         <junit5-jupiter.version>5.7.0</junit5-jupiter.version>
-        <log4j-2.version>2.14.0</log4j-2.version>
+        <log4j2.version>2.17.0</log4j2.version>
     </properties>
 
     <dependencies>
@@ -55,6 +55,16 @@
             <artifactId>spark-core_${scala.compat.version}</artifactId>
             <version>${spark.version}</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -74,6 +84,27 @@
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-avro_${scala.compat.version}</artifactId>
             <version>${spark.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-1.2-api</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j2.version}</version>
         </dependency>
 
     </dependencies>

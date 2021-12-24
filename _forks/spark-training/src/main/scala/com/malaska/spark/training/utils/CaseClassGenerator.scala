@@ -1,12 +1,13 @@
 import com.google.common.base.CaseFormat
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.{ArrayType, DataType, StructField, StructType}
 
 import scala.collection.mutable
 
 object CaseClassGenerator {
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
   Logger.getLogger("akka").setLevel(Level.OFF)
 
   val globalFieldCounter = new mutable.HashMap[String, Int]()

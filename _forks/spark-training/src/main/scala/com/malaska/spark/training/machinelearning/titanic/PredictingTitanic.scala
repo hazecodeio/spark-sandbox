@@ -1,14 +1,15 @@
 package com.malaska.spark.training.machinelearning.titanic
 
 import com.malaska.spark.training.machinelearning.common.ClassifiersImpl
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.ml.linalg.{Vector, Vectors}
 import org.apache.spark.sql
 import org.apache.spark.sql.{Dataset, SparkSession}
 
 object PredictingTitanic {
 
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
   Logger.getLogger("akka").setLevel(Level.OFF)
 
   def main (args:Array[String]): Unit = {

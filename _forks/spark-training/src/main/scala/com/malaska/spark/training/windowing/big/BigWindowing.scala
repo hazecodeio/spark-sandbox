@@ -1,6 +1,7 @@
 package com.malaska.spark.training.windowing.big
 
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.Partitioner
 import org.apache.spark.sql.SparkSession
 
@@ -13,7 +14,7 @@ import org.apache.spark.sql.SparkSession
   */
 object BigWindowing {
 
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
   Logger.getLogger("akka").setLevel(Level.OFF)
 
   def main(args: Array[String]): Unit = {

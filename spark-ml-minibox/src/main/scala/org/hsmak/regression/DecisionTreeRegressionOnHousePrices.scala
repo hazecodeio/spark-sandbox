@@ -1,6 +1,7 @@
 package org.hsmak.regression
 
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.ml.Transformer
 import org.apache.spark.ml.evaluation.RegressionEvaluator
 import org.apache.spark.ml.feature.{StandardScaler, StringIndexer}
@@ -12,7 +13,7 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 object DecisionTreeRegressionOnHousePrices extends App {
 
   //turn off Logging
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
 
   val base_data_dir = s"file://${System.getProperty("user.dir")}/_data/house_prices"
 

@@ -1,13 +1,14 @@
 package org.hsmak.recommendation
 
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.ml.evaluation.RegressionEvaluator
 import org.apache.spark.ml.recommendation.ALS
 import org.apache.spark.sql.{Row, SparkSession}
 
 object RecommenderOnMovies extends App {
 
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
 
   val base_data_dir = s"file://${System.getProperty("user.dir")}/_data/movielens"
 

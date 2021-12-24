@@ -1,13 +1,14 @@
 package com.malaska.spark.training.streaming.structured
 
 import com.malaska.spark.training.streaming.{Message, MessageBuilder}
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.streaming.{OutputMode, Trigger}
 import org.apache.spark.sql.functions._
 
 object CountingInAStreamExpGroupBy {
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
   Logger.getLogger("akka").setLevel(Level.OFF)
 
   def main(args:Array[String]): Unit = {

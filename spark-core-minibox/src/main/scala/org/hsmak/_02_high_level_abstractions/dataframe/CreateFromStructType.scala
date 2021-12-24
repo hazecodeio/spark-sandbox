@@ -1,13 +1,14 @@
 package org.hsmak._02_high_level_abstractions.dataframe
 
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.sql.types.{IntegerType, StringType, StructField, StructType}
 import org.apache.spark.sql.{Encoders, Row, SparkSession}
 
 object CreateFromStructType extends App {
 
 
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
 
   val spark: SparkSession = SparkSession
     .builder()

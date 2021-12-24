@@ -1,12 +1,13 @@
 package org.hsmak._03_sql.example
 
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.sql.SparkSession
 
 object DatasetSQLOpsOnNW extends App {
 
   //turn off Logging
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
 
 
   case class Employee(EmployeeID: String,

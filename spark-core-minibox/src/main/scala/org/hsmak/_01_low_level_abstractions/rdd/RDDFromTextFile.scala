@@ -1,17 +1,18 @@
 package org.hsmak._01_low_level_abstractions.rdd
 
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 
 /**
-  * Observations:
-  *     - sc.textFile(): gives out RDD[String] <- not RDD[Row]
-  *     - Ultimately you want to convert RDD to the a high level abstraction of DF/DS
-  */
+ * Observations:
+ *     - sc.textFile(): gives out RDD[String] <- not RDD[Row]
+ *     - Ultimately you want to convert RDD to the a high level abstraction of DF/DS
+ */
 object RDDFromTextFile extends App {
 
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
 
   val spark: SparkSession = SparkSession
     .builder()
@@ -24,9 +25,9 @@ object RDDFromTextFile extends App {
 
 
   /**
-    *
-    * @param spark
-    */
+   *
+   * @param spark
+   */
   def RDDFromCSVTextFile(spark: SparkSession) = {
     val sc = spark.sparkContext;
 

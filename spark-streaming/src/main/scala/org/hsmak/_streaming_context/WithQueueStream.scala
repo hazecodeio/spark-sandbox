@@ -1,6 +1,7 @@
 package org.hsmak._streaming_context
 
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.streaming.dstream.InputDStream
@@ -14,7 +15,7 @@ import scala.util.Random
   */
 object WithQueueStream extends App {
 
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
 
   val spark: SparkSession = SparkSession
     .builder()

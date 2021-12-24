@@ -1,6 +1,7 @@
 package com.malaska.spark.training.graph
 
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.graphx.{Edge, EdgeDirection, Graph, _}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
@@ -9,7 +10,7 @@ import org.apache.spark.sql.SparkSession
   * Created by tmalaska on 7/10/17.
   */
 object ZombieExample {
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
   Logger.getLogger("akka").setLevel(Level.OFF)
 
   def main(args:Array[String]): Unit = {

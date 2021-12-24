@@ -1,6 +1,7 @@
 package org.hsmak._02_high_level_abstractions.dataframe
 
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.sql.functions.desc
 import org.apache.spark.sql.{SparkSession, functions}
 
@@ -9,7 +10,7 @@ import org.apache.spark.sql.{SparkSession, functions}
   */
 object DataFrameFromTextFileOfCSV {
 
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
 
   def main(args: Array[String]) {
 

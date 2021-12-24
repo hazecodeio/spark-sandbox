@@ -1,12 +1,13 @@
 package org.hsmak.officialguide.feature.transformers
 
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.ml.feature.StringIndexer
 import org.apache.spark.sql.SparkSession
 
 object StringIndexerTransformer extends App {
 
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
 
   val spark = SparkSession
     .builder

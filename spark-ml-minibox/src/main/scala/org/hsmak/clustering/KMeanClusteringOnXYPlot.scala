@@ -1,6 +1,7 @@
 package org.hsmak.clustering
 
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.ml.clustering.KMeans
 import org.apache.spark.ml.evaluation.ClusteringEvaluator
 import org.apache.spark.ml.feature.VectorAssembler
@@ -8,7 +9,7 @@ import org.apache.spark.sql.{SaveMode, SparkSession}
 
 object KMeanClusteringOnXYPlot extends App {
 
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
 
   val base_data_dir = s"file://${System.getProperty("user.dir")}/_data"
 

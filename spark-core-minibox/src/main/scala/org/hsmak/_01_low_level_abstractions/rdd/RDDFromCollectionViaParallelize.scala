@@ -1,6 +1,7 @@
 package org.hsmak._01_low_level_abstractions.rdd
 
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.{IntegerType, StringType, StructField, StructType}
@@ -20,7 +21,7 @@ import scala.concurrent.{Await, Future}
   */
 object RDDFromCollectionViaParallelize extends App {
 
-  Logger.getLogger("org").setLevel(Level.OFF)
+  Configurator.setLevel("org.apache.spark", Level.OFF)
 
   val spark: SparkSession = SparkSession
     .builder()
