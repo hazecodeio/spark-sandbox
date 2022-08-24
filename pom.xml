@@ -23,16 +23,16 @@
         <scala.parallel.version>1.0.4</scala.parallel.version>
 
         <!--spark-->
-        <spark.version>3.2.1</spark.version>
+        <spark.version>3.3.0</spark.version>
 
         <!--test - scalatest/spec-->
-        <spec2.version>4.13.3</spec2.version>
-        <scalatest.version>3.2.11</scalatest.version>
+        <spec2.version>4.15.0</spec2.version>
+        <scalatest.version>3.2.12</scalatest.version>
 
         <!--test - junit-->
         <junit4.version>4.13.2</junit4.version>
         <junit5-jupiter.version>5.8.2</junit5-jupiter.version>
-        <log4j2.version>2.17.1</log4j2.version>
+        <log4j2.version>2.18.0</log4j2.version>
     </properties>
 
     <!--
