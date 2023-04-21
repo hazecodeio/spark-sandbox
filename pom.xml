@@ -23,7 +23,7 @@
         <scala.parallel.version>1.0.4</scala.parallel.version>
 
         <!--spark-->
-        <spark.version>3.3.0</spark.version>
+        <spark.version>3.4.0</spark.version>
 
         <!--test - scalatest/spec-->
         <spec2.version>4.15.0</spec2.version>
