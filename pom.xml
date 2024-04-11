@@ -3,253 +3,32 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.hsmak</groupId>
+    <parent>
+        <artifactId>spark_3.5-pom</artifactId>
+        <groupId>org.hsmak</groupId>
+        <version>1.0</version>
+    </parent>
+
+    <repositories>
+        <repository>
+            <id>github-repo</id>
+            <url>https://github.com/hsmak/maven-parent-poms/raw/main/_repo</url>
+        </repository>
+    </repositories>
+
     <artifactId>spark-sandbox</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <packaging>pom</packaging>
 
+    <modules>
+        <!--<module>_Test</module>
+        <module>core-scala</module>
+        <module>concurrency</module>
+        <module>data-structures</module>
+        <module>scala-http</module>-->
+    </modules>
+
     <name>${project.artifactId}</name>
-
-    <properties>
-        <!--common-->
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.release>11</maven.compiler.release>
-        <encoding>UTF-8</encoding>
-
-        <!--scala-->
-        <scala.version>2.13.8</scala.version>
-        <scala.compat.version>2.13</scala.compat.version>
-        <scala.parallel.version>1.0.4</scala.parallel.version>
-
-        <!--spark-->
-        <spark.version>3.3.0</spark.version>
-
-        <!--test - scalatest/spec-->
-        <spec2.version>4.15.0</spec2.version>
-        <scalatest.version>3.2.12</scalatest.version>
-
-        <!--test - junit-->
-        <junit4.version>4.13.2</junit4.version>
-        <junit5-jupiter.version>5.8.2</junit5-jupiter.version>
-        <log4j2.version>2.18.0</log4j2.version>
-    </properties>
-
-    <!--
-        Link: https://www.cloudera.com/documentation/enterprise/6/6.0/topics/spark_develop_run.html
-    -->
-    <dependencies>
-
-        <!--Scala-->
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>${scala.version}</version>
-            <!--<scope>provided</scope>-->
-        </dependency>
-
-        <dependency>
-            <groupId>org.scala-lang.modules</groupId>
-            <artifactId>scala-parallel-collections_2.13</artifactId>
-            <version>${scala.parallel.version}</version>
-        </dependency>
-
-        <!--Spark-->
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_${scala.compat.version}</artifactId>
-            <version>${spark.version}</version>
-            <!--<scope>provided</scope>-->
-            <exclusions>
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_${scala.compat.version}</artifactId>
-            <version>${spark.version}</version>
-            <!--<scope>provided</scope>-->
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-mllib_${scala.compat.version}</artifactId>
-            <version>${spark.version}</version>
-            <!--<scope>provided</scope>-->
-        </dependency>
-
-        <!--
-            * Add BLAS/LINPACK native libraries for faster run, and also get rid of the following warnings:
-                WARN BLAS: Failed to load implementation from: com.github.fommil.netlib.NativeSystemBLAS
-                WARN BLAS: Failed to load implementation from: com.github.fommil.netlib.NativeRefBLAS
-
-            * I also installed the following on my system (Ubuntu); not sure yet if it's related:
-                > sudo apt-get install libblas-dev liblapack-dev gfortran
-
-            * Links:
-                - https://spark.apache.org/docs/latest/ml-guide.html#dependencies
-                - https://github.com/aws-samples/emr-bootstrap-actions/issues/124
-                - https://askubuntu.com/questions/623578/installing-blas-and-lapack-packages
-                - https://github.com/fommil/netlib-java#linux
-        -->
-        <dependency>
-            <groupId>com.github.fommil.netlib</groupId>
-            <artifactId>all</artifactId>
-            <version>1.1.2</version>
-            <type>pom</type>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/au.com.bytecode/opencsv -->
-        <dependency>
-            <groupId>au.com.bytecode</groupId>
-            <artifactId>opencsv</artifactId>
-            <version>2.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>${log4j2.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4j2.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-1.2-api</artifactId>
-            <version>${log4j2.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>${log4j2.version}</version>
-        </dependency>
-
-        <!-- Test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit4.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.scalatest</groupId>
-            <artifactId>scalatest_${scala.compat.version}</artifactId>
-            <version>${scalatest.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.specs2</groupId>
-            <artifactId>specs2-core_${scala.compat.version}</artifactId>
-            <version>${spec2.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.specs2</groupId>
-            <artifactId>specs2-junit_${scala.compat.version}</artifactId>
-            <version>${spec2.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <build>
-
-        <plugins>
-            <plugin>
-                <!-- see http://davidb.github.com/scala-maven-plugin -->
-                <groupId>net.alchim31.maven</groupId>
-                <artifactId>scala-maven-plugin</artifactId>
-                <configuration>
-                    <recompileMode>incremental</recompileMode>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal><!--compile test classes-->
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-site-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-descriptor</id>
-                        <goals>
-                            <goal>attach-descriptor</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-
-        <!-- pluginManagement is similar to DependencyManagement -->
-        <pluginManagement>
-
-            <plugins>
-                <plugin>
-                    <groupId>net.alchim31.maven</groupId>
-                    <artifactId>scala-maven-plugin</artifactId>
-                    <version>4.5.6</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M5</version>
-                    <configuration>
-                        <!-- Tests will be run with scalatest-maven-plugin instead -->
-                        <skipTests>true</skipTests>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.scalatest</groupId>
-                    <artifactId>scalatest-maven-plugin</artifactId>
-                    <version>2.0.2</version>
-                    <executions>
-                        <execution>
-                            <id>test</id>
-                            <goals>
-                                <goal>test</goal><!--run the test suites/cases/classes-->
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <!--
-                    This is also needed so "mvn site" would call "scala:doc" to generate the Scaladoc???
-                -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>3.11.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>3.2.2</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>net.alchim31.maven</groupId>
-                <artifactId>scala-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </reporting>
 
 </project>
