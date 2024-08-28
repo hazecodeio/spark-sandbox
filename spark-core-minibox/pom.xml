@@ -22,13 +22,6 @@
                 <artifactId>scala-maven-plugin</artifactId>
                 <configuration>
                     <recompileMode>incremental</recompileMode>
-                    <!--ToDo-->
-                    <addArgs>
-                        --add-opens=java.base/java.lang.invoke=ALL-UNNAMED
-                        --add-opens=java.base/java.nio=ALL-UNNAMED
-                        --add-opens=java.base/java.util=ALL-UNNAMED
-                        --add-opens=java.base/sun.nio.ch=ALL-UNNAMED
-                    </addArgs>
                 </configuration>
             </plugin>
             <plugin>
@@ -37,7 +30,6 @@
                 <configuration>
                     <!-- Tests will be run with scalatest-maven-plugin instead -->
                     <skipTests>true</skipTests>
-                    <argLine>--add-opens=java.base/java.nio=ALL-UNNAMED</argLine>
                 </configuration>
             </plugin>
             <plugin>
