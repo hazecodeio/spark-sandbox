@@ -44,11 +44,12 @@
             <scope>compile</scope>
         </dependency>
 
-        <dependency>
+        <!-- Critical CVE -->
+        <!--<dependency>
             <groupId>com.databricks</groupId>
             <artifactId>spark-xml_${scala.compat.version}</artifactId>
             <version>0.18.0</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.apache.spark</groupId>
