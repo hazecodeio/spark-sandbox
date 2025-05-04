@@ -53,7 +53,7 @@
                             <mode>development</mode>
                         </manifestEntries>
                         <manifest>
-                            <mainClass>org.hsmak.SparkPi</mainClass>
+                            <mainClass>org.haze.SparkPi</mainClass>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                         </manifest>
