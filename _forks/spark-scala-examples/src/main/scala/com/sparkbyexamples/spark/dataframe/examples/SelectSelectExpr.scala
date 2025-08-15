@@ -7,7 +7,7 @@ object SelectSelectExpr extends App with MyContext {
 
   val spark:SparkSession = SparkSession.builder()
     .master("local[1]")
-    .appName("SparkByExample")
+    .appName("SparkByExamples.com")
     .getOrCreate()
 
   val data = Seq(
@@ -19,6 +19,7 @@ object SelectSelectExpr extends App with MyContext {
   //df.select("language","users_count as count").show() //Example 1 <- Doesn't work. It has to be selectExpr()
   df.select(df("language"),df("users_count").as("count")).show() //Example 2
   df.select(col("language"),col("users_count")).show() ////Example 3
+  //df.select("language",col("users_count")).show() ////Example 3
 
   df.selectExpr("language","users_count as count").show() //Example 1
   //df.selectExpr(df("language"),df("users_count").as("count")).show() //Example 2

@@ -1,6 +1,5 @@
 package com.sparkbyexamples.spark.dataframe.functions.datetime
 
-import com.sparkbyexamples.spark.MyContext
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.{col, expr}
 object AddTime extends App with MyContext {

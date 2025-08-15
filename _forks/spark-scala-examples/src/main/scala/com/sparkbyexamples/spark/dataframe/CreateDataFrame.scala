@@ -2,15 +2,14 @@ package com.sparkbyexamples.spark.dataframe
 
 import com.sparkbyexamples.spark.MyContext
 import org.apache.spark.sql.types.{StringType, StructField, StructType}
-import org.apache.spark.sql.{DataFrame, Row, SparkSession}
+import org.apache.spark.sql.{Row, SparkSession}
 
 object CreateDataFrame extends MyContext {
 
   def main(args:Array[String]):Unit={
 
     val spark:SparkSession = SparkSession.builder()
-      .master("local[1]")
-      .appName("SparkByExample")
+      .master("local[1]").appName("SparkByExamples.com")
       .getOrCreate()
 
     import spark.implicits._
@@ -21,10 +20,10 @@ object CreateDataFrame extends MyContext {
 
     //From RDD (USING toDF())
     val dfFromRDD1 = rdd.toDF("language","users")
-
+    dfFromRDD1.printSchema()
     //From RDD (USING createDataFrame)
     val dfFromRDD2 = spark.createDataFrame(rdd).toDF(columns:_*)
-
+    dfFromRDD2.printSchema()
     //From RDD (USING createDataFrame and Adding schema using StructType)
     //convert RDD[T] to RDD[Row]
     val schema = StructType( Array(StructField("language", StringType,  true),
