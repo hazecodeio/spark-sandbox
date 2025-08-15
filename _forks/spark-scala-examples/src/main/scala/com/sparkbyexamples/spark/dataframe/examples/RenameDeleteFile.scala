@@ -34,10 +34,10 @@ object RenameDeleteFile extends App{
 
   import scala.sys.process._
   //Delete a File
-  s"hdfs dfs -rm /tmp/.address_merged2.csv.crc" !
+  s"hdfs dfs -rm /tmp/.address_merged2.csv.crc".!
 
   //Delete a Directory
-  s"hdfs dfs -rm -r /tmp/.address_merged2.csv.crc" !
+  s"hdfs dfs -rm -r /tmp/.address_merged2.csv.crc".!
 
 
 }

@@ -38,7 +38,7 @@ object SaveSingleFile extends App{
     .csv("/tmp/address-tmp")
   val srcFilePath=new Path("/tmp/address-tmp")
   val destFilePath= new Path("/tmp/address_merged2.csv")
-  FileUtil.copyMerge(hdfs, srcFilePath, hdfs, destFilePath, true, hadoopConfig, null)
+//  FileUtil.copyMerge(hdfs, srcFilePath, hdfs, destFilePath, true, hadoopConfig, null)
   //Remove hidden CRC file if not needed.
   hdfs.delete(new Path("/tmp/.address_merged2.csv.crc"),true)
 
